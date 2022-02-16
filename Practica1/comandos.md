@@ -32,7 +32,52 @@ vtp domain g28
 vtp password g28
 exit
 
+// port channels
+conf t
+int range f0/1-2
+channel-protocol pagp
+channel-group 2 mode desirable
+exit
 
+int range f0/3-4
+channel-protocol pagp
+channel-group 4 mode desirable
+exit
+
+int range f0/5-6
+channel-protocol pagp
+channel-group 1 mode desirable
+exit
+exit
+
+// spanning - tree
+conf t
+spanning-tree mode rapid-pvst
+exit
+
+//blackhole
+conf t
+int range f0/7-24
+switchport mode access
+switchport access vlan 999
+
+int g0/2
+switchport mode access
+switchport access vlan 999
+exit
+
+// trunk
+conf t
+int range f0/1-6
+swithcport mode trunk
+switchport trunk allowed vlan 11,21,31,41,99,999
+exit
+
+// native
+conf t
+int range f0/1-6
+switchport trunk native vlan 99
+exit
 ```
 
 ## SWICH 1 -CLIENT
@@ -46,6 +91,39 @@ vtp mode client
 vtp domain g28
 vtp password g28
 
+// port channels
+conf t
+int range f0/3-4
+channel-protocol pagp
+channel-group 1 mode desirable
+exit
+exit
+
+//blackhole
+conf t
+int range f0/5-24
+switchport mode access
+switchport access vlan 999
+exit
+
+int g0/1
+switchport mode access
+switchport access vlan 999
+exit
+exit
+
+// trunk
+conf t
+int range f0/1-4
+swithcport mode trunk
+switchport trunk allowed vlan 11,21,31,41,99,999
+exit
+
+// native
+conf t
+int range f0/1-4
+switchport trunk native vlan 99
+exit
 ```
 
 ## SWICH 2 -CLIENT
@@ -59,6 +137,63 @@ vtp mode client
 vtp domain g28
 vtp password g28
 
+//port channels
+enable
+conf t
+int range f0/1-2
+channel-protocol pagp
+channel-group 2 mode desirable
+exit
+
+int range f0/3-4
+channel-protocol pagp
+channel-group 3 mode desirable
+exit
+exit
+
+//blackhole
+enable
+conf t
+int range f0/5-20
+switchport mode access
+switchport access vlan 999
+exit
+
+int range g0/1-2
+switchport mode access 
+switchport access vlan 999
+exit
+
+//spanning - tree
+conf t
+spanning-tree mode rapid-pvst
+
+// trunk
+conf t
+int range f0/1-4
+swithcport mode trunk
+switchport trunk allowed vlan 11,21,31,41,99,999
+exit
+
+// native
+conf t
+int range f0/1-4
+switchport trunk native vlan 99
+exit
+
+//aceso vlan 11
+conf t
+int range f0/23-24
+switchport mode access
+switchport access vlan 11
+exit
+
+//acceso vlan 21
+conf t
+int range f0/21-22
+switchport mode access
+switchport access vlan 21
+exit
 ```
 
 ## SWICH 3 -CLIENT
@@ -72,6 +207,53 @@ vtp mode client
 vtp domain g28
 vtp password g28
 
+//port channels
+enable
+conf t
+int range f0/1-2
+channel-protocol pagp
+channel-group 3 mode desirable
+exit
+
+int range f0/3-4
+channel-protocol pagp
+channel-group 4 mode desirable
+exit
+exit
+
+//spanning tree
+conf t
+spanning-tree mode rapid-pvst
+
+//blackhole
+enable
+conf t
+int range f0/5-22
+switchport mode access
+switchport access vlan 999
+Sexit
+
+int range g0/1-2
+switchport mode access
+switchport access vlan 999
+exit
+exit
+
+//acceso vlan 11
+conf t
+int f0/24
+switchport mode access
+switchport access vlan 11
+exit
+exit
+
+//accesso vlan 21
+conf t
+int f0/23
+switchport mode access
+switchport access vlan 21
+exit
+exit
 ```
 
 ## SWICH 4 -CLIENT
@@ -85,6 +267,33 @@ vtp mode client
 vtp domain g28
 vtp password g28
 
+//blackhole
+enable
+conf t
+int range f0/2-22
+switchport mode access
+switchport access vlan 999
+exit
+
+int range g0/1-2
+switchport mode access 
+switchport access vlan 999
+exit
+exit
+
+//acceso vlan 31
+int f0/24
+switchport mode access
+switchport access vlan 31
+exit
+exit
+
+//acceso vlan 41
+int f0/23
+switchport mode access
+switchport access vlan 41
+exit
+exit
 ```
 
 ## SWICH 5 -CLIENT
@@ -98,6 +307,33 @@ vtp version 2
 vtp domain g28
 vtp password g28
 
+//blackhole
+enable
+conf t
+int range f0/2-22
+switchport mode access
+switchport access vlan 999
+exit
+
+int range g0/1-2
+switchport mode access
+switchport access vlan 999
+exit
+exit
+
+//acceso vlan 31
+int f0/24
+switchport mode access
+switchport access vlan 31
+exit
+exit
+
+//acceso vlan 41
+int f0/23
+switchport mode access
+switchport access vlan 41
+exit
+exit
 ```
 
 ## Configuracion de PCs y Servers
