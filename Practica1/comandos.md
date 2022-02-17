@@ -4,6 +4,28 @@
 
 ```shell
 
+enable 
+conf t
+int gig0/0
+no shutdown
+int gig0/0.11
+enc dot1Q 11
+ip addess 192.168.11.1 255.255.255.224
+
+int gig0/0.21
+enc dot1Q 21
+ip address 192.168.11.33 255.255.255.224
+
+
+int gig0/0.31
+enc dot1Q 31
+ip address 192.168.11.65 255.255.255.224
+
+
+int gig0/0.41
+enc dot1Q 41
+ip address 192.168.11.97 255.255.255.224
+
 ```
 
 ## SWICH 0 - SERVER
@@ -78,6 +100,16 @@ conf t
 int range f0/1-6
 switchport trunk native vlan 99
 exit
+
+// Desactivacion DTP
+enable
+conf t
+int range f0/1-6
+sw nonegotiate
+exit
+exit
+
+
 ```
 
 ## SWICH 1 -CLIENT
@@ -123,6 +155,14 @@ exit
 conf t
 int range f0/1-4
 switchport trunk native vlan 99
+exit
+
+// Desactivacion DTP
+enable
+conf t
+int range f0/1-4
+sw nonegotiate
+exit
 exit
 ```
 
@@ -194,6 +234,41 @@ int range f0/21-22
 switchport mode access
 switchport access vlan 21
 exit
+
+// Desactivacion DTP
+enable
+conf t
+int range f0/1-4
+sw nonegotiate
+exit
+exit
+
+// port-security
+enable
+conf t
+int range f0/21-24
+sw port-security
+exit
+exit
+
+enable
+conf t
+int range f0/23-24
+sw port-security
+sw port-security maximum 5
+exit
+exit
+
+enable
+conf t
+int range f0/21-22
+sw port-security
+sw port-security maximum 1
+sw port-security mac-address sticky
+sw port-security violation shutdown
+exit
+exit
+
 ```
 
 ## SWICH 3 -CLIENT
@@ -254,6 +329,41 @@ switchport mode access
 switchport access vlan 21
 exit
 exit
+
+// Desactivacion DTP
+enable
+conf t
+int range f0/1-4
+sw nonegotiate
+exit
+exit
+
+// port-security
+enable
+conf t
+int range f0/23-24
+sw port-security
+exit
+exit
+
+enable
+conf t
+int f0/24
+sw port-security
+sw port-security maximum 5
+exit
+exit
+
+enable
+conf t
+int f0/23
+sw port-security
+sw port-security maximum 1
+sw port-security mac-address sticky
+sw port-security violation shutdown
+exit
+exit
+
 ```
 
 ## SWICH 4 -CLIENT
@@ -294,6 +404,32 @@ switchport mode access
 switchport access vlan 41
 exit
 exit
+
+// Desactivacion DTP
+conf t
+int f0/1
+sw nonegotiate
+exit
+exit
+
+// port-security
+enable
+conf t
+int range f0/23-24
+sw port-security
+exit
+exit
+
+enable
+conf t
+int f0/24
+sw port-security
+sw port-security maximum 1
+sw port-security mac-address sticky
+sw port-security violation shutdown
+exit
+exit
+
 ```
 
 ## SWICH 5 -CLIENT
@@ -334,6 +470,33 @@ switchport mode access
 switchport access vlan 41
 exit
 exit
+
+// Desactivacion DTP
+enable
+conf t
+int f0/1
+sw nonegotiate
+exit 
+exit
+
+// port-security
+enable
+conf t
+int range f0/23-24
+sw port-security
+exit
+exit
+
+enable
+conf t
+int f0/24
+sw port-security
+sw port-security maximum 1
+sw port-security mac-address sticky
+sw port-security violation shutdown
+exit
+exit
+
 ```
 
 ## Configuracion de PCs y Servers
