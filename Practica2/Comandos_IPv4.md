@@ -256,7 +256,7 @@ redistribute eigrp 100 metric 10
 
 
 ```
-
+  
 ### Router 4
 
 ```shell
@@ -355,3 +355,5 @@ end
 wr
 
 ```
+
+> El router que no tenia bgp esta como el router 2
