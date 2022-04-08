@@ -1,0 +1,36 @@
+.social-link {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    border-radius: 50%;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+}
+
+.social-link:hover,
+.social-link:focus {
+    background: #ddd;
+    text-decoration: none;
+    color: #555;
+}
+
+.section-title {
+    text-align: center;
+    color: #0d2d86;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+}
+
+h4 {
+    text-align: center;
+    color: #112f7a;
+}
+
+.img-fluid {
+    width: 200px;
+    height: 200px;
+}
