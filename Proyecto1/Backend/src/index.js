@@ -22,12 +22,9 @@ app.get("/", (req, res) => {
     res.status(200).json({ Mensaje: "API NODEJS - REDES 2 - GRUPO 28" });
 });
 
-app.use("/", require("./routes/getData.routes"));
+app.use("/",require("./routes/getData.routes"));
 
 // Start server
 app.listen(app.get("port"), () => {
     console.log(`Server on Port ${app.get("port")}`);
-
-    // Solo ejecutar una vez para que se carge las imagenes
-    // datos.save();
 });

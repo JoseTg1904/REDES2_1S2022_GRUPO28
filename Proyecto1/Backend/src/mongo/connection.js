@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 require("dotenv").config();
-
+//Credenciales a mongo
 const MONGO_CONFIG = {
     useNewUrlParser: true,
     useUnifiedTopology: true,

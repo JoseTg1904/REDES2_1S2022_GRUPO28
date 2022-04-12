@@ -6,6 +6,9 @@ const {
     modelAdministrators,
 } = require("../mongo/models");
 
+/**
+ *  Retorno de imagenes
+ */
 router.get("/imagenes", async(req, res) => {
     try {
         await modelImage.find().exec((err, images) => {
@@ -17,6 +20,9 @@ router.get("/imagenes", async(req, res) => {
     }
 });
 
+/**
+ *  Retorna a todos los adminitradores
+ */
 router.get("/administradores", async(req, res) => {
     try {
         await modelAdministrators.find().exec((err, admins) => {
@@ -28,6 +34,9 @@ router.get("/administradores", async(req, res) => {
     }
 });
 
+/**
+ *  Retorna a todos los desarrolladores de ucron
+ */
 router.get("/desarrolladores", async(req, res) => {
     try {
         await modelDeveloper.find().exec((err, developers) => {

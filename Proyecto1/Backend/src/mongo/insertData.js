@@ -3,7 +3,9 @@ const {
     modelDeveloper,
     modelAdministrators,
 } = require("./models.js");
-
+/**
+ *  Guardado de imagenes
+ */
 saveImage = async(nombre, url) => {
     const image = new modelImage({ nombre: nombre, url: url });
     await image.save((err, img) => {
@@ -11,7 +13,9 @@ saveImage = async(nombre, url) => {
         console.log(`Imagen agregada correctamente ${nombre}`);
     });
 };
-
+/**
+ *  Guardado de desarrolladores
+ */
 saveDeveloper = async(nombre, carnet, curso, puesto, url) => {
     const developer = new modelDeveloper({
         nombre: nombre,
@@ -25,7 +29,9 @@ saveDeveloper = async(nombre, carnet, curso, puesto, url) => {
         console.log(`Developer agregada correctamente ${nombre}`);
     });
 };
-
+/**
+ *  Guardado de administradores
+ */
 saveAdmin = async(nombre, descripcion, puesto, url) => {
     const administrator = new modelAdministrators({
         nombre: nombre,
